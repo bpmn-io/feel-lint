@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "plugin:bpmn-io/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  }
+}
