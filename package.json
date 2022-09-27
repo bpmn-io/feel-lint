@@ -41,6 +41,7 @@
     "@codemirror/view": "^6.2.5",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^14.1.0",
+    "chai": "^4.3.6",
     "eslint": "^8.23.1",
     "eslint-plugin-bpmn-io": "^0.16.0",
     "karma": "^6.4.1",
