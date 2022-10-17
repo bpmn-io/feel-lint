@@ -2,15 +2,18 @@
   "name": "@bpmn-io/feel-lint",
   "version": "0.0.0",
   "description": "Linter for FEEL expressions.",
-  "main": "lib/index.js",
+  "source": "lib/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
-    "all": "run-s lint test",
+    "all": "run-s lint test build",
+    "build": "rollup -c",
     "dev": "npm test -- --auto-watch --no-single-run",
     "lint": "eslint .",
-    "prepare": "run-s lint",
+    "prepare": "run-s build",
     "test": "karma start test/karma.config.js"
   },
   "repository": {
@@ -40,7 +43,6 @@
     "@codemirror/state": "^6.1.2",
     "@codemirror/view": "^6.2.5",
     "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^14.1.0",
     "chai": "^4.3.6",
     "eslint": "^8.23.1",
     "eslint-plugin-bpmn-io": "^0.16.0",
