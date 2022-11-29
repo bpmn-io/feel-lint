@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-io/feel-lint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Linter for FEEL expressions.",
   "source": "lib/index.js",
   "main": "dist/index.js",
