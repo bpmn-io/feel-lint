@@ -1,5 +1,7 @@
 # @bpmn-io/feel-lint
 
+[![CI](https://github.com/bpmn-io/feel-lint/actions/workflows/CI.yml/badge.svg)](https://github.com/bpmn-io/feel-lint/actions/workflows/CI.yml)
+
 Linting for FEEL expressions.
 
 ## Usage
