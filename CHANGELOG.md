@@ -10,6 +10,10 @@ ___Note:__ Yet to be released changes appear here._
 
 * `DEPS`: bump to `lezer-feel@1.0.1`
 
+### Breaking Changes
+
+* We now treat any FEEL expression as a single expression, not a list of expressions.
+
 ## 0.1.1
 
 * `DEPS`: bump `lezer-feel@0.15.0`
