@@ -6,6 +6,10 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.0.0
+
+* re-release `v0.2.0` as stable
+
 ## 0.2.0
 
 * `DEPS`: bump to `lezer-feel@1.0.1`
