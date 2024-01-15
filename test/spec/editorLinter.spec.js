@@ -48,8 +48,8 @@ describe('lint - Editor', function() {
     // then
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('error');
-    expect(results[0].source).to.eql('syntaxError');
-    expect(results[0].message).to.eql('unexpected CompareOp');
+    expect(results[0].source).to.eql('Syntax Error');
+    expect(results[0].message).to.eql('Unrecognized token in <Expression>');
 
   });
 
@@ -66,8 +66,8 @@ describe('lint - Editor', function() {
     // then
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('error');
-    expect(results[0].source).to.eql('syntaxError');
-    expect(results[0].message).to.eql('expression expected');
+    expect(results[0].source).to.eql('Syntax Error');
+    expect(results[0].message).to.eql('Unrecognized token <CompareOp> in <Comparison>');
 
   });
 
