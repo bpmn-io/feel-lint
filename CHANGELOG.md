@@ -6,6 +6,10 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.0
+
+* `FEAT`: provide more user friendly messages ([#2](https://github.com/bpmn-io/feel-lint/pull/2))
+
 ## 1.1.0
 
 * `DEPS`: update to `lezer-feel@1.2.0`
