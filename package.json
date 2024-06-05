@@ -45,7 +45,7 @@
   "devDependencies": {
     "@codemirror/state": "^6.4.0",
     "@codemirror/view": "^6.23.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-commonjs": "^26.0.0",
     "chai": "^4.4.1",
     "eslint": "^8.56.0",
     "eslint-plugin-bpmn-io": "^1.0.0",
