@@ -18,6 +18,17 @@ import { lintExpression } from "@bpmn-io/feel-lint"
 lintExpression('foo = bar');
 ```
 
+You may pass custom language configuration to the editor:
+
+```javascript
+lintExpression('> 10, "yes", mike\'s name', {
+  dialect: 'unaryTests',
+  context: {
+    "mike's name": "Mike the might"
+  }
+});
+```
+
 ### CodeMirror plugin
 
 The `cmFeelLinter` function returns a [`LintSource`](https://codemirror.net/docs/ref/#lint.LintSource) that you can use to extend your [CodeMirror](https://codemirror.net/) instance.

@@ -18,6 +18,38 @@ describe('lint - Text', function() {
   });
 
 
+  it('should accept valid unaryTests', function() {
+
+    // given
+    const expression = '> 10, 100, "FOOBAR"';
+
+    // when
+    const results = lintExpression(expression, {
+      dialect: 'unaryTests'
+    });
+
+    // then
+    expect(results).to.have.length(0);
+  });
+
+
+  it('should accept valid expression with contextual value', function() {
+
+    // given
+    const expression = 'get or else(10, 100)';
+
+    // when
+    const results = lintExpression(expression, {
+      context: {
+        'get or else': (value, _default) => typeof value === 'undefined' ? _default : value
+      }
+    });
+
+    // then
+    expect(results).to.have.length(0);
+  });
+
+
   it('should return syntax error on empty document', function() {
 
     // given
