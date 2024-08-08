@@ -2,14 +2,14 @@ import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { LanguageSupport } from '@codemirror/language';
 import { feelLanguage } from 'lang-feel';
-import { cmFeelLinter } from '../../lib';
+import { cmFeelLinter } from '../../../lib';
 
-describe('lint - Editor', function() {
+describe('lint - Rules - first-item', function() {
 
   it('should accept valid expression', function() {
 
     // given
-    const view = createFeelViewer('foo = bar');
+    const view = createFeelViewer('foo[1]');
     const linter = cmFeelLinter();
 
     // when
@@ -21,25 +21,10 @@ describe('lint - Editor', function() {
   });
 
 
-  it('should not return syntax error on empty document', function() {
+  it('should return first item error', function() {
 
     // given
-    const view = createFeelViewer('');
-    const lint = cmFeelLinter();
-
-    // when
-    const results = lint(view);
-
-    // then
-    expect(results).to.have.length(0);
-
-  });
-
-
-  it('should return syntax error', function() {
-
-    // given
-    const view = createFeelViewer('= 15');
+    const view = createFeelViewer('foo[0]');
     const lint = cmFeelLinter();
 
     // when
@@ -48,16 +33,15 @@ describe('lint - Editor', function() {
     // then
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('error');
-    expect(results[0].source).to.eql('Syntax Error');
-    expect(results[0].message).to.eql('Unrecognized token in <Expression>');
-
+    expect(results[0].source).to.eql('first-item');
+    expect(results[0].message).to.eql('First item is accessed via [1]');
   });
 
 
-  it('should return 0-width syntax error', function() {
+  it('should return first item error even if space is used', function() {
 
     // given
-    const view = createFeelViewer('15 == 15');
+    const view = createFeelViewer('foo[ 0 ]');
     const lint = cmFeelLinter();
 
     // when
@@ -66,11 +50,24 @@ describe('lint - Editor', function() {
     // then
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('error');
-    expect(results[0].source).to.eql('Syntax Error');
-    expect(results[0].message).to.eql('Unrecognized token <CompareOp> in <Comparison>');
-
+    expect(results[0].source).to.eql('first-item');
+    expect(results[0].message).to.eql('First item is accessed via [1]');
   });
 
+
+  it('should apply fix on editor', function() {
+
+    // given
+    const view = createFeelViewer('foo[0]');
+    const lint = cmFeelLinter();
+
+    // when
+    const results = lint(view);
+    results[0].actions[0].apply();
+
+    // then
+    expect(view.state.sliceDoc()).to.eql('foo[1]');
+  });
 });
 
 // helpers //////////
@@ -85,3 +82,4 @@ function createFeelViewer(doc) {
     })
   });
 }
+
