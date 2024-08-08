@@ -46,8 +46,8 @@ module.exports = function(karma) {
       module: {
         rules: [
           {
-            test: /\.(css)$/,
-            use: 'raw-loader'
+            test: /\.(css|html)$/,
+            type: 'asset/source'
           },
           {
             test: /\.json$/,
