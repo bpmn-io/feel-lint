@@ -1,0 +1,42 @@
+<style>
+  html, body, .container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .editor, .context {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  #editor, #context {
+    border: 1px solid gray;
+    flex: 1;
+  }
+</style>
+<div class="container">
+  <h1>
+    Example
+  </h1>
+  <div class="editor">
+    <h2>
+      Editor
+    </h2>
+    <div id="editor""></div>
+  </div>
+  <div class="context">
+    <h2>
+      Context
+    </h2>
+    <textarea id="context"></textarea>
+  </div>
+</div>
