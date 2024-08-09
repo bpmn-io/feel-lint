@@ -27,7 +27,7 @@ export default {
             actions: [
               {
                 name: 'fix',
-                apply(_, from, to) {
+                apply(_, from = node.from, to = node.to) {
                   context.updateContent(from, to, content.replace(/\[0\]$/, '[1]'));
                 }
               }

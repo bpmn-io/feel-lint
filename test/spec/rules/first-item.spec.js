@@ -36,6 +36,21 @@ describe('lint - Rules - first-item', function() {
     expect(results[0].source).to.eql('first-item');
     expect(results[0].message).to.eql('First item is accessed via [1]');
   });
+
+
+  it('should apply fix on editor', function() {
+
+    // given
+    const view = createFeelViewer('foo[0]');
+    const lint = cmFeelLinter();
+
+    // when
+    const results = lint(view);
+    results[0].actions[0].apply();
+
+    // then
+    expect(view.state.sliceDoc()).to.eql('foo[1]');
+  });
 });
 
 // helpers //////////
