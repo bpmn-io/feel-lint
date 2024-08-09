@@ -1,7 +1,8 @@
 /**
  * @typedef {object} Context
- * @property {boolean} report
+ * @property {function} report
  * @property {(from: number, to: number) => string} readContent
+ * @property {(from: number, to: number, content: string) => void} updateContent
  */
 
 const RULE_NAME = 'first-item';
@@ -22,7 +23,15 @@ export default {
             to: node.to,
             message: 'First item is accessed via [1]',
             severity: 'error',
-            type: RULE_NAME
+            type: RULE_NAME,
+            actions: [
+              {
+                name: 'fix',
+                apply(_, from, to) {
+                  context.updateContent(from, to, content.replace(/\[0\]$/, '[1]'));
+                }
+              }
+            ]
           });
         }
       }
