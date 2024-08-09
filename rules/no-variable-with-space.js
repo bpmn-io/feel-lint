@@ -5,19 +5,19 @@
  * @property {(from: number, to: number, content: string) => void} updateContent
  */
 
-const RULE_NAME = 'first-item';
+const RULE_NAME = 'no-variable-with-space';
 
 export default {
   create(/** @type {Context} */ context) {
     return {
       enter(node) {
-        if (node.name !== 'FilterExpression') {
+        if (node.name !== 'Key') {
           return;
         }
 
         const content = context.readContent(node.from, node.to);
 
-        if (/\[0\]$/.test(content)) {
+        if (/\s/.test(content)) {
           const {
             from,
             to
@@ -26,14 +26,16 @@ export default {
           context.report({
             from,
             to,
-            message: 'First item is accessed via [1]',
+            message: 'Variable with space is not allowed',
             severity: 'error',
             type: RULE_NAME,
             actions: [
               {
                 name: 'fix',
                 apply(_, start = from, end = to) {
-                  context.updateContent(start, end, content.replace(/\[0\]$/, '[1]'));
+                  const content = context.readContent(start, end);
+                  const camelCaseContent = content.replace(/\s+\w/g, match => match.trim().toUpperCase());
+                  context.updateContent(from, to, camelCaseContent);
                 }
               }
             ]
