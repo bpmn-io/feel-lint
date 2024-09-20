@@ -21,7 +21,7 @@ describe('lint - Rules - first-item', function() {
   });
 
 
-  it('should return first item error', function() {
+  it('should detect issue', function() {
 
     // given
     const view = createFeelViewer('foo[0]');
@@ -32,13 +32,13 @@ describe('lint - Rules - first-item', function() {
 
     // then
     expect(results).to.have.length(1);
-    expect(results[0].severity).to.eql('error');
+    expect(results[0].severity).to.eql('warning');
     expect(results[0].source).to.eql('first-item');
     expect(results[0].message).to.eql('First item is accessed via [1]');
   });
 
 
-  it('should return first item error even if space is used', function() {
+  it('should detect issue (space is used)', function() {
 
     // given
     const view = createFeelViewer('foo[ 0 ]');
@@ -49,7 +49,7 @@ describe('lint - Rules - first-item', function() {
 
     // then
     expect(results).to.have.length(1);
-    expect(results[0].severity).to.eql('error');
+    expect(results[0].severity).to.eql('warning');
     expect(results[0].source).to.eql('first-item');
     expect(results[0].message).to.eql('First item is accessed via [1]');
   });

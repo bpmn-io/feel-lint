@@ -27,7 +27,7 @@ export default {
             from,
             to,
             message: 'First item is accessed via [1]',
-            severity: 'error',
+            severity: 'warning',
             type: RULE_NAME,
             actions: [
               {
