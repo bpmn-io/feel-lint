@@ -6,6 +6,10 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.1
+
+* `FIX`: make `first-item` a warning
+
 ## 1.3.0
 
 * `FEAT`: add `first-item` rule ([#25](https://github.com/bpmn-io/feel-lint/issues/25))
