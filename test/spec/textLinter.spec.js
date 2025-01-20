@@ -84,7 +84,7 @@ describe('lint - Text', function() {
   it('should return syntax error', function() {
 
     // given
-    const expression = '= 15';
+    const expression = '^15';
 
     // when
     const results = lintExpression(expression);
@@ -101,7 +101,7 @@ describe('lint - Text', function() {
   it('should return 0-width syntax error', function() {
 
     // given
-    const expression = '15 == 15';
+    const expression = '15 =^15';
 
     // when
     const results = lintExpression(expression);
@@ -110,7 +110,7 @@ describe('lint - Text', function() {
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('error');
     expect(results[0].type).to.eql('Syntax Error');
-    expect(results[0].message).to.eql('Unrecognized token <CompareOp> in <Comparison>');
+    expect(results[0].message).to.eql('Unrecognized token <ArithOp> in <Comparison>');
 
   });
 

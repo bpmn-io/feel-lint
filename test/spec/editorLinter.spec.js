@@ -54,7 +54,7 @@ describe('lint - Editor', function() {
   it('should return syntax error', function() {
 
     // given
-    const view = createFeelViewer('= 15');
+    const view = createFeelViewer('^15');
     const lint = cmFeelLinter();
 
     // when
@@ -72,7 +72,7 @@ describe('lint - Editor', function() {
   it('should return 0-width syntax error', function() {
 
     // given
-    const view = createFeelViewer('15 == 15');
+    const view = createFeelViewer('15 =^ 15');
     const lint = cmFeelLinter();
 
     // when
@@ -82,7 +82,7 @@ describe('lint - Editor', function() {
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('error');
     expect(results[0].source).to.eql('Syntax Error');
-    expect(results[0].message).to.eql('Unrecognized token <CompareOp> in <Comparison>');
+    expect(results[0].message).to.eql('Unrecognized token <ArithOp> in <Comparison>');
 
   });
 
