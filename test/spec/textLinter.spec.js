@@ -1,6 +1,5 @@
-
-
 import { lintExpression } from '../../lib';
+
 
 describe('lint - Text', function() {
 
@@ -26,6 +25,21 @@ describe('lint - Text', function() {
     // when
     const results = lintExpression(expression, {
       dialect: 'unaryTests'
+    });
+
+    // then
+    expect(results).to.have.length(0);
+  });
+
+
+  it('should accept valid with parserDialect=camunda', function() {
+
+    // given
+    const expression = 'a.`b - c`';
+
+    // when
+    const results = lintExpression(expression, {
+      parserDialect: 'camunda'
     });
 
     // then

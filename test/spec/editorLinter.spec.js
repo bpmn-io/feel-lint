@@ -4,6 +4,7 @@ import { LanguageSupport } from '@codemirror/language';
 import { feelLanguage } from 'lang-feel';
 import { cmFeelLinter } from '../../lib';
 
+
 describe('lint - Editor', function() {
 
   it('should accept valid expression', function() {
@@ -18,6 +19,20 @@ describe('lint - Editor', function() {
     // then
     expect(results).to.have.length(0);
 
+  });
+
+
+  it('should accept valid with parserDialect=camunda', function() {
+
+    // when
+    const view = createFeelViewer('a.`b - c`', { dialect: 'camunda' });
+    const lint = cmFeelLinter();
+
+    // when
+    const results = lint(view);
+
+    // then
+    expect(results).to.have.length(0);
   });
 
 
@@ -75,12 +90,12 @@ describe('lint - Editor', function() {
 
 // helpers //////////
 
-function createFeelViewer(doc) {
+function createFeelViewer(doc, config = {}) {
   return new EditorView({
     state:  EditorState.create({
       doc,
       extensions: [
-        new LanguageSupport(feelLanguage, [ ])
+        new LanguageSupport(feelLanguage.configure(config), [ ])
       ]
     })
   });
