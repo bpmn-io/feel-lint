@@ -6,6 +6,14 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.4.0
+
+* `FEAT`: allow to configure language parsing ([#23](https://github.com/bpmn-io/feel-lint/pull/23))
+* `FEAT`: add ability to lint unary tests ([#23](https://github.com/bpmn-io/feel-lint/pull/23))
+* `FEAT`: add ability to lint FEEL flavors ([#23](https://github.com/bpmn-io/feel-lint/pull/23))
+* `DEPS`: update to `@codemirror/language@6.10.8`
+* `DEPS`: update to `lezer-feel@1.7.0`
+
 ## 1.3.1
 
 * `FIX`: make `first-item` a warning
