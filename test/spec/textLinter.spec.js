@@ -47,16 +47,16 @@ describe('lint - Text', function() {
   });
 
 
-  it('should accept valid expression with contextual value', function() {
+  it('should accept valid expression with builtins', function() {
 
     // given
     const expression = 'get or else(10, 100)';
 
     // when
     const results = lintExpression(expression, {
-      context: {
-        'get or else': (value, _default) => typeof value === 'undefined' ? _default : value
-      }
+      builtins: [
+        { name: 'get or else', params: [ { name: 'value' }, { name: 'default' } ] }
+      ]
     });
 
     // then

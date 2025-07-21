@@ -18,14 +18,19 @@ import { lintExpression } from "@bpmn-io/feel-lint"
 lintExpression('foo = bar');
 ```
 
-You may pass custom language configuration to the editor:
+You may pass custom language configuration to the editor. Checkout [@camunda/feel-builtins](https://github.com/camunda/feel-builtins) for a reference of built-in functions.
 
 ```javascript
+import { camundaBuiltins } from '@camunda/feel-builtins';
+
 lintExpression('> 10, "yes", mike\'s name', {
   dialect: 'unaryTests',
-  context: {
-    "mike's name": "Mike the might"
-  }
+  builtins: camundaBuiltins,
+  variables:  [
+    {
+       name: `mike's name`
+    }
+  ]
 });
 ```
 
