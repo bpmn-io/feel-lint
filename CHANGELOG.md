@@ -6,6 +6,11 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 2.0.1
+
+* `FIX`: recognize unclosed string literal as syntax error
+* `DEPS`: update to `lezer-feel@1.7.1`
+
 ## 2.0.0
 
 * `FEAT`: `builtins` & `variables` can be configured directly instead of `context` ([#36](https://github.com/bpmn-io/feel-lint/pull/36))

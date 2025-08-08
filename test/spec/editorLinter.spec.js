@@ -86,6 +86,22 @@ describe('lint - Editor', function() {
 
   });
 
+
+  it('should return syntax error for unclosed string literal', function() {
+
+    // given
+    const view = createFeelViewer('"unclosed string');
+    const lint = cmFeelLinter();
+
+    // when
+    const results = lint(view);
+
+    // then
+    expect(results).to.have.length(1);
+    expect(results[0].severity).to.eql('error');
+    expect(results[0].source).to.eql('Syntax Error');
+    expect(results[0].message).to.eql('Unrecognized token in <Expression>');
+  });
 });
 
 // helpers //////////
