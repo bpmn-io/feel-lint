@@ -60,7 +60,7 @@
     "karma-mocha": "^2.0.1",
     "karma-sinon-chai": "^2.0.2",
     "karma-webpack": "^5.0.1",
-    "lang-feel": "^2.0.0",
+    "@bpmn-io/lang-feel": "^2.4.0",
     "mocha": "^10.8.2",
     "npm-run-all2": "^8.0.0",
     "puppeteer": "^24.1.0",
@@ -71,6 +71,6 @@
   },
   "dependencies": {
     "@codemirror/language": "^6.10.8",
-    "lezer-feel": "^1.7.1"
+    "@bpmn-io/lezer-feel": "^1.9.0"
   }
 }

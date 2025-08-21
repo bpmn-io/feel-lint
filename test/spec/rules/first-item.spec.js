@@ -1,7 +1,7 @@
 import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { LanguageSupport } from '@codemirror/language';
-import { feelLanguage } from 'lang-feel';
+import { feelLanguage } from '@bpmn-io/lang-feel';
 import { cmFeelLinter } from '../../../lib';
 
 describe('lint - Rules - first-item', function() {
