@@ -1,7 +1,7 @@
 import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { LanguageSupport } from '@codemirror/language';
-import { feelLanguage } from 'lang-feel';
+import { feelLanguage } from '@bpmn-io/lang-feel';
 import { cmFeelLinter } from '../../lib';
 
 
@@ -26,6 +26,20 @@ describe('lint - Editor', function() {
 
     // when
     const view = createFeelViewer('a.`b - c`', { dialect: 'camunda' });
+    const lint = cmFeelLinter();
+
+    // when
+    const results = lint(view);
+
+    // then
+    expect(results).to.have.length(0);
+  });
+
+
+  it('should accept multiline with parserDialect=camunda', function() {
+
+    // when
+    const view = createFeelViewer('"multiline\nstring"', { dialect: 'camunda' });
     const lint = cmFeelLinter();
 
     // when
@@ -102,6 +116,7 @@ describe('lint - Editor', function() {
     expect(results[0].source).to.eql('Syntax Error');
     expect(results[0].message).to.eql('Unrecognized token in <Expression>');
   });
+
 });
 
 // helpers //////////
