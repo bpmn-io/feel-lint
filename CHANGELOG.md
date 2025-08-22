@@ -6,6 +6,12 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 2.1.0
+
+* `FEAT`: support multi-line strings in camunda dialect ([@bpmn-io/lezer-feel#2](https://github.com/bpmn-io/lezer-feel/pull/2))
+* `DEPS`: update to `@bpmn-io/lang-feel@2.4.0`
+* `DEPS`: update to `@bpmn-io/lezer-feel@1.9.0` fork of `lezer-feel`
+
 ## 2.0.1
 
 * `FIX`: recognize unclosed string literal as syntax error
