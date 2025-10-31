@@ -48,7 +48,7 @@
     "@codemirror/lint": "^6.8.4",
     "@codemirror/state": "^6.5.1",
     "@codemirror/view": "^6.36.2",
-    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "chai": "^4.5.0",
     "eslint": "^9.18.0",
     "eslint-plugin-bpmn-io": "^2.1.0",
