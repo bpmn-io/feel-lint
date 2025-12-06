@@ -71,6 +71,6 @@
   },
   "dependencies": {
     "@codemirror/language": "^6.10.8",
-    "@bpmn-io/lezer-feel": "^1.9.0"
+    "@bpmn-io/lezer-feel": "^2.0.0"
   }
 }
