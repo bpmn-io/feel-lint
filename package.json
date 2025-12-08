@@ -3,9 +3,12 @@
   "version": "2.1.0",
   "description": "Linter for FEEL expressions.",
   "type": "module",
-  "source": "lib/index.js",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "source": "./lib/index.js",
+  "main": "./dist/index.js",
   "files": [
     "dist"
   ],

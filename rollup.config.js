@@ -5,14 +5,10 @@ const nonbundledDependencies = Object.keys({ ...pkg.dependencies });
 
 export default {
   input: pkg.source,
-  output: [ {
-    file: pkg.main,
-    format: 'cjs'
-  },
-  {
-    file: pkg.module,
+  output: {
+    file: pkg.exports['.'],
     format: 'esm'
-  } ],
+  },
   plugins: [
     commonjs()
   ],
