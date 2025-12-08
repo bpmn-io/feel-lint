@@ -1,5 +1,7 @@
 import { lintExpression } from '../../lib';
 
+import { expect } from 'chai';
+
 
 describe('lint - Text', function() {
 
