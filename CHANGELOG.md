@@ -6,6 +6,16 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.0.0
+
+* `CHORE`: turn into ES module ([#45](https://github.com/bpmn-io/feel-lint/pull/45))
+* `CHORE`: drop CJS distribution ([#45](https://github.com/bpmn-io/feel-lint/pull/45))
+* `DEPS`: update to `@bpmn-io/lang-feel@3.0.0` ([#45](https://github.com/bpmn-io/feel-lint/pull/45))
+
+### Breaking Changes
+
+* Drop CJS distribution. To require from CJS use `Node >= 20.12.0`
+
 ## 2.1.0
 
 * `FEAT`: support multi-line strings in camunda dialect ([@bpmn-io/lezer-feel#2](https://github.com/bpmn-io/lezer-feel/pull/2))
