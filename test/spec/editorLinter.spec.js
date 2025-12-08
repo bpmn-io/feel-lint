@@ -4,6 +4,8 @@ import { LanguageSupport } from '@codemirror/language';
 import { feelLanguage } from '@bpmn-io/lang-feel';
 import { cmFeelLinter } from '../../lib';
 
+import { expect } from 'chai';
+
 
 describe('lint - Editor', function() {
 

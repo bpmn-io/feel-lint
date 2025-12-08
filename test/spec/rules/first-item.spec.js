@@ -4,6 +4,9 @@ import { LanguageSupport } from '@codemirror/language';
 import { feelLanguage } from '@bpmn-io/lang-feel';
 import { cmFeelLinter } from '../../../lib';
 
+import { expect } from 'chai';
+
+
 describe('lint - Rules - first-item', function() {
 
   it('should accept valid expression', function() {

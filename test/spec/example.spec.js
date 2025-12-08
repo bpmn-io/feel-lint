@@ -7,8 +7,9 @@ import { feel } from '@bpmn-io/lang-feel';
 import { cmFeelLinter } from '../../lib';
 import TEMPLATE from './example.html';
 
-const start = window.__env__ && window.__env__.SINGLE_START;
+import { expect } from 'chai';
 
+const start = window.__env__ && window.__env__.SINGLE_START;
 
 
 describe('example', function() {
