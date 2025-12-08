@@ -1,4 +1,4 @@
-import { lintExpression } from '../../lib';
+import { lintExpression } from '../../lib/index.js';
 
 import { expect } from 'chai';
 

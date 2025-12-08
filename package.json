@@ -2,6 +2,7 @@
   "name": "@bpmn-io/feel-lint",
   "version": "2.1.0",
   "description": "Linter for FEEL expressions.",
+  "type": "module",
   "source": "lib/index.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -15,7 +16,7 @@
     "dev": "npm test -- --auto-watch --no-single-run",
     "lint": "eslint .",
     "prepare": "run-s build",
-    "test": "karma start test/karma.config.js"
+    "test": "karma start test/karma.config.cjs"
   },
   "repository": {
     "type": "git",
