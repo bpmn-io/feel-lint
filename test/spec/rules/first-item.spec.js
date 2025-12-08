@@ -2,7 +2,7 @@ import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { LanguageSupport } from '@codemirror/language';
 import { feelLanguage } from '@bpmn-io/lang-feel';
-import { cmFeelLinter } from '../../../lib';
+import { cmFeelLinter } from '../../../lib/index.js';
 
 import { expect } from 'chai';
 

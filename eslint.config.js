@@ -1,9 +1,9 @@
 import bpmnIoPlugin from 'eslint-plugin-bpmn-io';
 
 const buildScripts = [
+  '*.cjs',
   '*.js',
-  '*.mjs',
-  'test/karma.config.js'
+  'test/karma.config.cjs'
 ];
 
 export default [

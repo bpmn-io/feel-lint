@@ -4,7 +4,7 @@ import { Compartment, EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { feel } from '@bpmn-io/lang-feel';
 
-import { cmFeelLinter } from '../../lib';
+import { cmFeelLinter } from '../../lib/index.js';
 import TEMPLATE from './example.html';
 
 import { expect } from 'chai';
