@@ -44,7 +44,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@bpmn-io/lang-feel": "^2.4.0",
+    "@bpmn-io/lang-feel": "^3.0.0",
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/lint": "^6.9.2",
     "@codemirror/state": "^6.5.2",
