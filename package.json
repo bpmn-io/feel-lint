@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-io/feel-lint",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Linter for FEEL expressions.",
   "type": "module",
   "exports": {
