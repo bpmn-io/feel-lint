@@ -54,7 +54,7 @@
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.38.8",
     "@rollup/plugin-commonjs": "^29.0.0",
-    "chai": "^6.0.0",
+    "chai": "^6.2.2",
     "eslint": "^9.18.0",
     "eslint-plugin-bpmn-io": "^2.1.0",
     "karma": "^6.4.4",
@@ -66,11 +66,11 @@
     "karma-webpack": "^5.0.1",
     "mocha": "^11.0.0",
     "npm-run-all2": "^8.0.4",
-    "puppeteer": "^24.32.1",
+    "puppeteer": "^24.36.1",
     "rollup": "^4.31.0",
-    "sinon": "^21.0.0",
+    "sinon": "^21.0.1",
     "sinon-chai": "^4.0.0",
-    "webpack": "^5.103.0"
+    "webpack": "^5.105.0"
   },
   "dependencies": {
     "@bpmn-io/lezer-feel": "^2.0.0",
