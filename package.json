@@ -73,7 +73,7 @@
     "webpack": "^5.105.0"
   },
   "dependencies": {
-    "@bpmn-io/lezer-feel": "^2.1.0",
+    "@bpmn-io/lezer-feel": "^3.0.0",
     "@codemirror/language": "^6.12.1"
   }
 }
