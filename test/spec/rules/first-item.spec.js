@@ -1,8 +1,5 @@
-import { EditorState } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
-import { LanguageSupport } from '@codemirror/language';
-import { feelLanguage } from '@bpmn-io/lang-feel';
-import { cmFeelLinter } from '../../../lib/index.js';
+import { parser } from '@bpmn-io/lezer-feel';
+import firstItem from '../../../rules/first-item.js';
 
 import { expect } from 'chai';
 
@@ -12,11 +9,10 @@ describe('lint - Rules - first-item', function() {
   it('should accept valid expression', function() {
 
     // given
-    const view = createFeelViewer('foo[1]');
-    const linter = cmFeelLinter();
+    const { messages } = lintRule(firstItem, 'foo[1]');
 
     // when
-    const results = linter(view);
+    const results = messages;
 
     // then
     expect(results).to.have.length(0);
@@ -27,16 +23,15 @@ describe('lint - Rules - first-item', function() {
   it('should detect issue', function() {
 
     // given
-    const view = createFeelViewer('foo[0]');
-    const lint = cmFeelLinter();
+    const { messages } = lintRule(firstItem, 'foo[0]');
 
     // when
-    const results = lint(view);
+    const results = messages;
 
     // then
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('warning');
-    expect(results[0].source).to.eql('first-item');
+    expect(results[0].type).to.eql('first-item');
     expect(results[0].message).to.eql('First item is accessed via [1]');
   });
 
@@ -44,16 +39,15 @@ describe('lint - Rules - first-item', function() {
   it('should detect issue (space is used)', function() {
 
     // given
-    const view = createFeelViewer('foo[ 0 ]');
-    const lint = cmFeelLinter();
+    const { messages } = lintRule(firstItem, 'foo[ 0 ]');
 
     // when
-    const results = lint(view);
+    const results = messages;
 
     // then
     expect(results).to.have.length(1);
     expect(results[0].severity).to.eql('warning');
-    expect(results[0].source).to.eql('first-item');
+    expect(results[0].type).to.eql('first-item');
     expect(results[0].message).to.eql('First item is accessed via [1]');
   });
 
@@ -61,28 +55,46 @@ describe('lint - Rules - first-item', function() {
   it('should apply fix on editor', function() {
 
     // given
-    const view = createFeelViewer('foo[0]');
-    const lint = cmFeelLinter();
+    const {
+      messages,
+      readExpression
+    } = lintRule(firstItem, 'foo[0]');
 
     // when
-    const results = lint(view);
+    const results = messages;
     results[0].actions[0].apply();
 
     // then
-    expect(view.state.sliceDoc()).to.eql('foo[1]');
+    expect(readExpression()).to.eql('foo[1]');
   });
 });
 
 // helpers //////////
 
-function createFeelViewer(doc) {
-  return new EditorView({
-    state:  EditorState.create({
-      doc,
-      extensions: [
-        new LanguageSupport(feelLanguage, [ ])
-      ]
-    })
+function lintRule(rule, expression) {
+  let updatedExpression = expression;
+
+  const messages = [];
+  const visitor = rule.create({
+    readContent: (from, to) => updatedExpression.slice(from, to),
+    report: message => messages.push(message),
+    updateContent: (from, to, content) => {
+      updatedExpression = `${updatedExpression.slice(0, from)}${content}${updatedExpression.slice(to)}`;
+    }
   });
+
+  parser.configure({ top: 'Expression' }).parse(expression).iterate({
+    enter: ref => {
+      visitor.enter && visitor.enter(ref);
+    },
+    leave: ref => {
+      visitor.leave && visitor.leave(ref);
+    }
+  });
+
+  return {
+    messages,
+    readExpression: () => updatedExpression
+  };
 }
 
