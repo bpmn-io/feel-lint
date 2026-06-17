@@ -9,10 +9,7 @@ const coverage = process.env.COVERAGE;
 
 const suite = coverage ? 'coverageBundle.js' : 'testBundle.js';
 
-module.exports = async function(karma) {
-
-  // use puppeteer provided Chrome for testing
-  process.env.CHROME_BIN = await require('puppeteer').executablePath();
+module.exports = function(karma) {
 
   const config = {
     frameworks: [
