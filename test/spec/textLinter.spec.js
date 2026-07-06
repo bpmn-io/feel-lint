@@ -116,4 +116,63 @@ describe('lint - Text', function() {
 
   });
 
+
+  describe('compatibility', function() {
+
+    const builtins = [ { name: 'from json', engines: { camunda: '>=8.9' } } ];
+
+
+    it('should warn on version-incompatible builtin', function() {
+
+      // given
+      const expression = 'from json("x")';
+
+      // when
+      const results = lintExpression(expression, {
+        parserDialect: 'camunda',
+        builtins,
+        engines: { camunda: '8.6' }
+      });
+
+      // then
+      expect(results).to.have.length(1);
+      expect(results[0].severity).to.eql('warning');
+      expect(results[0].type).to.eql('compatibility');
+      expect(results[0].message).to.eql('Function \'from json\' requires Camunda >=8.9');
+    });
+
+
+    it('should not warn when the version satisfies', function() {
+
+      // given
+      const expression = 'from json("x")';
+
+      // when
+      const results = lintExpression(expression, {
+        parserDialect: 'camunda',
+        builtins,
+        engines: { camunda: '8.9' }
+      });
+
+      // then
+      expect(results).to.have.length(0);
+    });
+
+
+    it('should not warn without engines configured', function() {
+
+      // given
+      const expression = 'from json("x")';
+
+      // when
+      const results = lintExpression(expression, {
+        parserDialect: 'camunda',
+        builtins
+      });
+
+      // then
+      expect(results).to.have.length(0);
+    });
+  });
+
 });

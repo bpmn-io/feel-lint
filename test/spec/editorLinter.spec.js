@@ -119,6 +119,57 @@ describe('lint - Editor', function() {
     expect(results[0].message).to.eql('Unrecognized token in <Expression>');
   });
 
+
+  describe('compatibility', function() {
+
+    const builtins = [ { name: 'from json', engines: { camunda: '>=8.9' } } ];
+
+
+    it('should warn on version-incompatible builtin', function() {
+
+      // given
+      const view = createFeelViewer('from json("x")', { dialect: 'camunda' });
+      const lint = cmFeelLinter({ parserDialect: 'camunda', builtins, engines: { camunda: '8.6' } });
+
+      // when
+      const results = lint(view);
+
+      // then
+      expect(results).to.have.length(1);
+      expect(results[0].severity).to.eql('warning');
+      expect(results[0].source).to.eql('compatibility');
+      expect(results[0].message).to.eql('Function \'from json\' requires Camunda >=8.9');
+    });
+
+
+    it('should not warn when the version satisfies', function() {
+
+      // given
+      const view = createFeelViewer('from json("x")', { dialect: 'camunda' });
+      const lint = cmFeelLinter({ parserDialect: 'camunda', builtins, engines: { camunda: '8.9' } });
+
+      // when
+      const results = lint(view);
+
+      // then
+      expect(results).to.have.length(0);
+    });
+
+
+    it('should not warn without options', function() {
+
+      // given
+      const view = createFeelViewer('from json("x")', { dialect: 'camunda' });
+      const lint = cmFeelLinter();
+
+      // when
+      const results = lint(view);
+
+      // then
+      expect(results).to.have.length(0);
+    });
+  });
+
 });
 
 // helpers //////////
