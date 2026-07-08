@@ -1,3 +1,6 @@
+import { parser, trackVariables } from '@bpmn-io/lezer-feel';
+
+import { createContext } from '../../../lib/text/util.js';
 import lintCompatibility from '../../../rules/compatibility.js';
 
 import { expect } from 'chai';
@@ -10,12 +13,15 @@ const BUILTINS = [
 ];
 
 function lint(expression, options = {}) {
-  return lintCompatibility({
-    expression,
-    parserDialect: 'camunda',
-    builtins: BUILTINS,
-    ...options
-  });
+  const { builtins = BUILTINS, engines } = options;
+
+  const syntaxTree = parser.configure({
+    top: 'Expression',
+    dialect: 'camunda',
+    contextTracker: trackVariables(createContext(builtins))
+  }).parse(expression);
+
+  return lintCompatibility({ syntaxTree, expression, builtins, engines });
 }
 
 

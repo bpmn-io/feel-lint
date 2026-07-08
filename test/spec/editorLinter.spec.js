@@ -129,7 +129,7 @@ describe('lint - Editor', function() {
 
       // given
       const view = createFeelViewer('from json("x")', { dialect: 'camunda' });
-      const lint = cmFeelLinter({ parserDialect: 'camunda', builtins, engines: { camunda: '8.6' } });
+      const lint = cmFeelLinter({ builtins, engines: { camunda: '8.6' } });
 
       // when
       const results = lint(view);
@@ -146,7 +146,7 @@ describe('lint - Editor', function() {
 
       // given
       const view = createFeelViewer('from json("x")', { dialect: 'camunda' });
-      const lint = cmFeelLinter({ parserDialect: 'camunda', builtins, engines: { camunda: '8.9' } });
+      const lint = cmFeelLinter({ builtins, engines: { camunda: '8.9' } });
 
       // when
       const results = lint(view);
