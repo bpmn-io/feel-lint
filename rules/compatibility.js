@@ -2,16 +2,15 @@ import { FeelAnalyzer } from '@bpmn-io/feel-analyzer';
 import { isCompatible } from '@bpmn-io/semver-compat';
 
 /**
+ * @typedef {import('@lezer/common').Tree} Tree
  * @typedef {import('../lib/text/util.js').Variable} Variable
  * @typedef {import('../lib/shared/index.js').LintMessage} LintMessage
  *
  * @typedef {object} CompatibilityContext
- * @property {string} expression the full expression text
+ * @property {Tree} syntaxTree the already-parsed syntax tree
+ * @property {string} expression the source the tree was parsed from
  * @property {Record<string, string>} [engines] provided engine versions, e.g. `{ camunda: '8.6' }`
  * @property {Variable[]} [builtins] built-ins, carrying `engines` requirements
- * @property {Variable[]} [reservedNameBuiltins] built-ins using reserved names (for parsing)
- * @property {'expression' | 'unaryTests'} [dialect]
- * @property {string} [parserDialect]
  */
 
 const RULE_NAME = 'compatibility';
@@ -20,7 +19,9 @@ const RULE_NAME = 'compatibility';
  * Reports calls to built-in functions that are not available in the provided
  * engine version(s).
  *
- * No-op unless `engines` is provided and built-ins carry `engines` metadata.
+ * Reuses the already-parsed `syntaxTree` (via feel-analyzer) instead of
+ * re-parsing. No-op unless `engines` is provided and built-ins carry `engines`
+ * metadata.
  *
  * @param {CompatibilityContext} context
  *
@@ -28,12 +29,10 @@ const RULE_NAME = 'compatibility';
  */
 export default function lintCompatibility(context = {}) {
   const {
+    syntaxTree,
     expression,
     engines,
-    builtins = [],
-    reservedNameBuiltins = [],
-    dialect,
-    parserDialect
+    builtins = []
   } = context;
 
   if (!engines || !Object.keys(engines).length || !builtins.length) {
@@ -46,14 +45,9 @@ export default function lintCompatibility(context = {}) {
     return [];
   }
 
-  const analyzer = new FeelAnalyzer({
-    dialect,
-    parserDialect,
-    builtins,
-    reservedNameBuiltins
-  });
+  const analyzer = new FeelAnalyzer({ builtins });
 
-  const { valid, functions = [] } = analyzer.analyzeExpression(expression);
+  const { valid, functions = [] } = analyzer.analyzeTree(syntaxTree, expression);
 
   // syntax errors are reported separately; don't double-report on broken input
   if (!valid) {
