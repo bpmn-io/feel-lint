@@ -6,6 +6,12 @@ All notable changes to [feel-lint](https://github.com/bpmn-io/feel-lint) are doc
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.2.0
+
+* `FEAT`: lint FEEL built-ins against target engine version ([#61](https://github.com/bpmn-io/feel-lint/pull/61))
+* `DEPS`: update to `@bpmn-io/feel-analyzer@0.5.0`
+* `DEPS`: update to `@bpmn-io/lezer-feel@3.0.0`
+
 ## 3.1.0
 
 * `DEPS`: update to `@bpmn-io/lezer-feel@2.1.0`
