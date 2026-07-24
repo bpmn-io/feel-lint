@@ -55,7 +55,7 @@
     "@codemirror/view": "^6.39.12",
     "@rollup/plugin-commonjs": "^29.0.0",
     "chai": "^6.2.2",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "eslint-plugin-bpmn-io": "^2.2.0",
     "karma": "^6.4.4",
     "karma-chrome-launcher-2": "^3.3.0",
